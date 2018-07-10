@@ -1,5 +1,13 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.3.1
+- 2.3.1
 before_install: gem install bundler -v 1.16.1
+deploy:
+  provider: rubygems
+  api_key:
+    secure: U0xIx0W7z9h8gTzMgytChZ2//cyrbPvfO6Yx2YnJKF3gj5xKghSmFK6V5S/M/QiNNhx7l/1ER8tm+INRzx+WN34IVspeEBg5Ds//MwDmwVZCkzQAvTeorWGMAAcN6eOIAWgdDaP57qLvkBIGFEsyw0iB3E51noBIzeHTUnSzTZkXiGisY2Dn3ltfDdGcUhYGQDTm+i6kscKmUD9JislVqfK3rOUWwmwi3Nj2fqTCVht7Q14QuYjMg98cPBniY89bj3jSrGsMbnjVK+HUB97XruONo90J6SkuH/O5vOegJnHvWQcgB7slfMFGAWrqujUvov46n+s7rZKs+kmF89mWqv8AbY/pqzARuoEjT2F43ixJBLkl9L+z5l+P6FWqPkP7jL+QVFWzlmhRf8EraymZthhrtfGSq4QN6aJc1+msCgXNIhgeqR6AIJapLH3/+085S+FbZAakPpzob6wfJ+4G+wzFAXapkTvj2Z5T2z8Zch3kghtxk3EgJr+FvxlkDvw3asDITpGrMM+S6p9WHWLpon/+vgomD5p6ky32rnDUEfhyDnQghK+bfzJRvPmBohyHmfTP45No/HgqoUDuikFLJVcRQ1XPgwglqvEpIPQvP+MQlJgax2GVuDzZXqlfOLZuSaj3F0LwFqB36wxD/TS70n64boxDuaX8RDLKTDMuklQ=
+  gem: mumukit-randomizer
+  on:
+    tags: true
+    repo: mumuki/mumukit-randomizer
