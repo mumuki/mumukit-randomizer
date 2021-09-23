@@ -8,4 +8,8 @@ class Mumukit::Randomizer::Randomization::Base
   def modulo(value, range)
     Random.new(value).rand(range)
   end
+
+  def evaluate(seed, values)
+    get seed
+  end
 end
