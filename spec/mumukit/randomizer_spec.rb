@@ -57,6 +57,8 @@ describe Mumukit::Randomizer do
 
       it { expect(randomizer.randomized_values(1)).to eq 'option' => 'second option', 'explain' => 'do that', 'example' => 'other example' }
       it { expect(randomizer.randomized_values(2)).to eq 'option' => 'first option', 'explain' => 'do this', 'example' => 'an example' }
+
+      it { expect(randomizer.randomize("> We need $option - $explain. E.g. $example", 2)).to eq "> We need first option - do this. E.g. an example" }
     end
   end
 

@@ -22,6 +22,8 @@ module Mumukit
       end
     end
 
+    alias randomize randomize!
+
     def self.parse(randomizations)
       new randomizations.with_indifferent_access.transform_values { |it| Mumukit::Randomizer::Randomization.parse it }
     end
