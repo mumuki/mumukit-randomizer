@@ -38,6 +38,22 @@ describe Mumukit::Randomizer do
       it { expect(randomizer.randomized_values(6)).to eq 'a' => 10, 'b' => 5, 'some_expression' => 20 }
     end
 
+    context 'conversion expressions' do
+      let(:expression) { 'a.to_s + b.to_s' }
+
+      it { expect(randomizer.randomized_values(1)).to eq 'a' => 6, 'b' => 9, 'some_expression' => '69' }
+      it { expect(randomizer.randomized_values(4)).to eq 'a' => 8, 'b' => 4, 'some_expression' => '84' }
+      it { expect(randomizer.randomized_values(6)).to eq 'a' => 10, 'b' => 5, 'some_expression' => '105' }
+    end
+
+    context 'conversion expressions' do
+      let(:expression) { '(a.to_s + b.to_s).to_i' }
+
+      it { expect(randomizer.randomized_values(1)).to eq 'a' => 6, 'b' => 9, 'some_expression' => 69 }
+      it { expect(randomizer.randomized_values(4)).to eq 'a' => 8, 'b' => 4, 'some_expression' => 84 }
+      it { expect(randomizer.randomized_values(6)).to eq 'a' => 10, 'b' => 5, 'some_expression' => 105 }
+    end
+
     context 'list expressions' do
       let(:expression) { 'map([a, 1.5 * b, 11], x, x - 1).min' }
 
