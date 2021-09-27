@@ -27,6 +27,9 @@ module Mumukit
     def self.parse(randomizations)
       new randomizations.with_indifferent_access.transform_values { |it| Mumukit::Randomizer::Randomization.parse it }
     end
+
+    class RandomizationFormatError < StandardError
+    end
   end
 end
 

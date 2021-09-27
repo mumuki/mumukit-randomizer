@@ -21,6 +21,12 @@ describe Mumukit::Randomizer do
     it { expect(randomizer.with_seed 6).to eq([['some_string', 'some'],    ['some_number', 2]]) }
   end
 
+
+  context 'invalid format' do
+    it { expect { Mumukit::Randomizer.parse x: { type: :expression, value: "}"} }.to raise_error Mumukit::Randomizer::RandomizationFormatError, 'Malformed randomization expression: Tokenizing error, unexpected closing brace }. See docs here https://github.com/project-eutopia/keisan' }
+    it { expect { Mumukit::Randomizer.parse x: { type: :range, value: ["a", "b"]} }.to raise_error Mumukit::Randomizer::RandomizationFormatError, 'lower bound must be Numeric' }
+  end
+
   describe Mumukit::Randomizer::Randomization::Expression do
     let(:randomizer) do
       Mumukit::Randomizer.parse(
