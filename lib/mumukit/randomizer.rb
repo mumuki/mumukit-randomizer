@@ -17,15 +17,19 @@ module Mumukit
     end
 
     def randomize!(field, seed)
-      with_seed(seed).inject(field) do |result, (replacee, replacer)|
-        result.gsub "$#{replacee}", replacer.to_s
-      end
+      self.class.interpolate_all field, with_seed(seed)
     end
 
     alias randomize randomize!
 
     def self.parse(randomizations)
       new randomizations.with_indifferent_access.transform_values { |it| Mumukit::Randomizer::Randomization.parse it }
+    end
+
+    def self.interpolate_all(text, values)
+      values.inject(text) do |result, (replacee, replacer)|
+        result.gsub "$#{replacee}", replacer.to_s
+      end
     end
 
     class RandomizationFormatError < StandardError

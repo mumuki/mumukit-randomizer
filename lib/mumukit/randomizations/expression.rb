@@ -17,6 +17,10 @@ class Mumukit::Randomizer::Randomization::Expression < Mumukit::Randomizer::Rand
   end
 
   def evaluate(seed, values)
-    @calculator.evaluate(@keisan_code, {seed: seed}.merge(values.to_h))
+    @calculator.evaluate(interpolated_keisan_code(values), {seed: seed}.merge(values.to_h))
+  end
+
+  def interpolated_keisan_code(values)
+    Mumukit::Randomizer.interpolate_all @keisan_code, values
   end
 end

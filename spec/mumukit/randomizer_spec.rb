@@ -82,6 +82,20 @@ describe Mumukit::Randomizer do
 
       it { expect(randomizer.randomize("> We need $option - $explain. E.g. $example", 2)).to eq "> We need first option - do this. E.g. an example" }
     end
+
+    context 'expression with full interpolation' do
+      context 'valid interpolation location' do
+        let(:expression) { '"19$a$b"' }
+
+        it { expect(randomizer.randomized_values(4)).to eq 'a' => 8, 'b' => 4, 'some_expression' => "1984" }
+      end
+
+      context 'invalid interpolation location' do
+        let(:expression) { '19$a$b' }
+
+        it { expect { randomizer }.to raise_error Mumukit::Randomizer::RandomizationFormatError }
+      end
+    end
   end
 
   it 'has a version number' do
